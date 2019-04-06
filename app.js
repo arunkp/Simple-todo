@@ -53,6 +53,7 @@ docReady(function() {
     var pushedNote = null;
     var counter = 1;
     var notes = JSON.parse(localStorage.getItem("savedData"));
+    console.log("notes==>",notes);
     var addTask = function(e) {
         var colorSelector = document.getElementById("colors");
         var color = colorSelector.options[colorSelector.selectedIndex].value;
@@ -62,12 +63,11 @@ docReady(function() {
         var val = e.currentTarget.value;
         if (code == 13 && val.length > 0) {
             var count = ++counter;
-
             var generator = new IDGenerator();
             var new_id = generator.generate();
-
+            var lsnotes = JSON.parse(localStorage.getItem("savedData"));
             if(lsTest() === true){
-                notes.unshift({
+                lsnotes.unshift({
                     id: new_id,
                     note: val,
                     color: color,
@@ -76,7 +76,7 @@ docReady(function() {
                     isFav: false
                 })
                 
-                localStorage.setItem("savedData", JSON.stringify(notes));
+                localStorage.setItem("savedData", JSON.stringify(lsnotes));
             }
 
             var html = '<li class="column" draggable="true" id="' +  new_id + '">';
@@ -108,8 +108,8 @@ docReady(function() {
         if(clear) {
             document.getElementById("columns").innerHTML = "";
         }
-        var notes = JSON.parse(localStorage.getItem("savedData")) ||localStorage.setItem("savedData", JSON.stringify([])) ;
-        if (notes.length>0) {
+        var notes = JSON.parse(localStorage.getItem("savedData")) || localStorage.setItem("savedData", JSON.stringify([])) ;
+        if (notes && notes.length > 0) {
             for(var i=0;i<notes.length;i++) {
                 var html = '<li data-index='+ i +' class="column '+ (notes[i].done ? 'task-done ' : ' ') + (notes[i].isFav ? 'imp-task ' : ' ') + '"' +' draggable="true" id="' + notes[i].id + '">';
                 html += '<div class="done-img">&#10004;</div>';
