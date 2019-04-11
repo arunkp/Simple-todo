@@ -1,4 +1,4 @@
-# Simple-toto
+# Simple-todo
 
 Simple-todo saves your notes personally over localstorage. Safe and easy.
 
