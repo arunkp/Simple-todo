@@ -4,7 +4,7 @@ Simple-todo saves your notes personally over localstorage. Safe and easy.
 
 ## Installation
 
-No need of server, no need of nothing. Localstorage should be available on your favourite browser. That's it.
+No need of server. Localstorage should be available on your favourite browser. That's it.
 
 
 ## Contributing
